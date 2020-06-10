@@ -19,6 +19,11 @@ For more information see our documentation:
 * [Profiling Snippet Window](Documentation~/profiling-snippet-window.md)
 * [API](Documentation~/api.md)
 
+## Installation
+- Download the package (). Unzip it somewhere on your disk.
+- Either **embed** the package itself in your project by copying the package in the Packages folder of your project.
+- Use the package manager, select add package from disk and select the package.json file in the com.unity.performance-tracking folder.
+
 ## Requirements
 
 This version of Performance Tracker is compatible with the following versions of the Unity Editor:
