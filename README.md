@@ -21,6 +21,7 @@ For more information see our documentation:
 
 ## Installation
 - Download the package (). Unzip it somewhere on your disk.
+![download](Documentation~/images/download.png)
 - Either **embed** the package itself in your project by copying the package in the Packages folder of your project.
 - Use the package manager, select add package from disk and select the package.json file in the com.unity.performance-tracking folder.
 
