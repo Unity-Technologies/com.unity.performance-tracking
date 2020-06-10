@@ -23,15 +23,16 @@ For more information see our documentation:
 
 ### Git URL
 Use the package manager:
-    - Click the plus icon
-    - Click **Add package from git URL**
-    ![install](Documentation~/images/git-url.png)
-    - Enter: `git@github.com:Unity-Technologies/com.unity.performance-tracking.git`
+- Click the plus icon
+- Click **Add package from git URL**
+
+![install](Documentation~/images/git-url.png)
+
+- Enter: `git@github.com:Unity-Technologies/com.unity.performance-tracking.git`
 
 ### Local Installation
 - Download the package. Unzip it somewhere on your disk.
 ![download](Documentation~/images/download.png)
-
 - Either **embed** the package itself in your project by copying the package in the Packages folder of your project.
 ![embed](Documentation~/images/emded.png)
 
