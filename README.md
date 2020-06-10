@@ -2,9 +2,9 @@
 
 This package expose a bunch of workflows and utilities to track, monitor and help profile the general performance of Unity Editor.
 
-The core of these monitoring utilities is in the Performance Tracker Window (available in version 2020.1):
+The core of these monitoring utilities is in the Performance Tracker Window (available in version 2019.3):
 
-![Performance Tracker](https://files.slack.com/files-pri/T06AF9667-FNRD6JJ1L/image.png?pub_secret=cf9533c0e4)
+![task manager](images/performance-tracker-window.png)
 
 And in the Profiling Snippet Window and API:
 
