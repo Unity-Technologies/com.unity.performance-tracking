@@ -30,6 +30,7 @@ Use the package manager:
 
 ### Local Installation
 - Download the package. Unzip it somewhere on your disk.
+
 ![download](Documentation~/images/download.png)
 
 - Either **embed** the package itself in your project by copying the package in the Packages folder of your project.
