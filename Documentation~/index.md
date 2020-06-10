@@ -6,7 +6,7 @@ This package contains multiples utilities and workflows to help track performanc
 
 Most of the workflows of this package are based on data gathered from the multiple Performance Trackers that are instantied in the Editor code. Performance tracker are a really low cost abstraction that is always live in the editor.
 
-You can get  more information about the tracker [api](api.html#tracker-api).
+You can get  more information about the tracker [api](api.md).
 
 ## Which workflows are available?
 
