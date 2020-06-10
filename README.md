@@ -20,11 +20,16 @@ For more information see our documentation:
 * [API](Documentation~/api.md)
 
 ## Installation
-- Download the package (). Unzip it somewhere on your disk.
+- Download the package. Unzip it somewhere on your disk.
 ![download](Documentation~/images/download.png)
 - Either **embed** the package itself in your project by copying the package in the Packages folder of your project.
-- Use the package manager, select add package from disk and select the package.json file in the com.unity.performance-tracking folder.
-
+- Or Use the package manager:
+    - Click the plus icon
+    - Click **Add package from disk**
+    ![install](Documentation~/images/add-package.png)
+    - Select the package.json file in the com.unity.performance-tracking-master folder.
+    ![install](Documentation~/images/select-package.png)
+    
 ## Requirements
 
 This version of Performance Tracker is compatible with the following versions of the Unity Editor:
