@@ -29,6 +29,7 @@ For more information see our documentation:
 - Or Use the package manager:
     - Click the plus icon
     - Click **Add package from disk**
+    
 ![install](Documentation~/images/add-package.png)
 
     - Select the package.json file in the com.unity.performance-tracking-master folder.
