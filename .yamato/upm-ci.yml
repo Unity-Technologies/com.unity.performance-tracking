@@ -11,10 +11,6 @@ test_platforms:
     type: Unity::VM::osx
     image: buildfarm/mac:stable
     flavor: m1.mac
-#  - name: linux
-#    type: Unity::VM
-#    image: package-ci/ubuntu:latest
-#    flavor: m1.large
 ---
 pack:
   name: Pack
