@@ -25,7 +25,9 @@ For more information see our documentation:
 Use the package manager:
 - Click the plus icon
 - Click **Add package from git URL**
+
 ![install](Documentation~/images/git-url.png)
+
 - Enter: `git@github.com:Unity-Technologies/com.unity.performance-tracking.git`
 
 ### Local Installation
