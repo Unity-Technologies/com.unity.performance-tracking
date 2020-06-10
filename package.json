@@ -1,0 +1,17 @@
+{
+	"name": "com.unity.performance-tracking",
+	"displayName":"Performance Tracking",
+	"version": "1.0.0-preview.1",
+	"unity": "2018.4",
+	"keywords": ["unity", "editor", "window", "performance"],
+	"description": "The performance tracking package provides to the users additional profiling tools to help them find exactly how the performance is spread.\n\nThe performance tracker window is the hub to these tools. Once opened, the user can search for any performance tracker and start a filtered profiling session.",
+	"author": {
+		"name": "Unity Technologies ApS",
+		"url": "https://unity.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.cds.internal.unity3d.com/unity/com.unity.performance-tracking.git"
+	},
+	"dependencies": {}
+}

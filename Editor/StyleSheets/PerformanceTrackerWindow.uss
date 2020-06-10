@@ -1,0 +1,106 @@
+﻿.perf-toolbar, .perf-tracker-list {
+	margin-left: 3px;
+	margin-right: 0px;
+}
+
+.perf-tracker-name {
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-width: 200px;
+	overflow: hidden;
+}
+
+/* Make the tracker name textfield look like label */
+.perf-tracker-name > .unity-text-field__input {
+	background-color: rgba(0,0,0,0);
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+}
+
+.perf-age {
+	width: 80px;
+}
+
+.perf-actions {
+	width: 30px;
+	-unity-text-align: middle-center;
+}
+
+.perf-sample-count {
+	width: 115px;
+}
+
+.perf-avg-time, .perf-peak-time, .perf-last-time, .perf-total-time {
+	width: 130px;
+}
+
+.perf-tracker-name, .perf-age, .perf-avg-time, .perf-peak-time, .perf-last-time, .perf-total-time {
+	-unity-text-align: middle-left;
+}
+
+.perf-tracker-name, .perf-age, .perf-avg-time, .perf-peak-time, .perf-last-time, .perf-total-time, .perf-actions, .perf-sample-count {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.perf-header-row-container {
+	margin-left: 19px;
+}
+
+.perf-header {
+	font-size: 14px;
+	-unity-font-style: bold;
+	height: 25px;
+	-unity-text-align: middle-left;
+}
+
+.perf-selector-label {
+	-unity-text-align: middle-center;
+}
+
+.perf-search-box {
+	flex-grow: 1;
+	min-width: 300px;
+}
+
+.perf-update-speed-selector {
+	width: 100px;
+}
+
+.perf-columns-selector {
+	width: 100px;
+}
+
+.perf-sort-by-selector {
+	width: 100px;
+}
+
+.perf-stop-profiling-button {
+	margin-left: 6px;
+	margin-right: 3px;
+}
+
+.perf-tracker-toolbar-button {
+	margin-left: 6px;
+	margin-right: 140px;
+	padding-top: 3px;
+}
+
+.perf-pin {
+	width: 16px;
+	flex-shrink: 0;
+	flex-grow: 0;
+	background-image: none;
+	-unity-background-scale-mode: scale-to-fit;
+}
+
+.perf-pin-on {
+	background-image: resource("d_Favorite");
+	-unity-background-image-tint-color: #fdc008;
+}
+
+.perf-row:hover > .perf-pin-off {
+	background-image: resource("Favorite");
+}
