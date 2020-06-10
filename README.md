@@ -4,7 +4,7 @@ This package expose a bunch of workflows and utilities to track, monitor and hel
 
 The core of these monitoring utilities is in the Performance Tracker Window (available in version 2019.3):
 
-![task manager](images/performance-tracker-window.png)
+![task manager](Documentation~/images/performance-tracker-window.png)
 
 And in the Profiling Snippet Window and API:
 
