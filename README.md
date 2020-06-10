@@ -20,6 +20,15 @@ For more information see our documentation:
 * [API](Documentation~/api.md)
 
 ## Installation
+
+### Git URL
+Use the package manager:
+    - Click the plus icon
+    - Click **Add package from git URL**
+    ![install](Documentation~/images/git-url.png)
+    - Enter: `git@github.com:Unity-Technologies/com.unity.performance-tracking.git`
+
+### Local Installation
 - Download the package. Unzip it somewhere on your disk.
 ![download](Documentation~/images/download.png)
 
@@ -28,12 +37,10 @@ For more information see our documentation:
 
 - Or Use the package manager:
     - Click the plus icon
-    - Click **Add package from disk**
-    
-![install](Documentation~/images/add-package.png)
-
+    - Click **Add package from disk**    
+    ![install](Documentation~/images/add-package.png)
     - Select the package.json file in the com.unity.performance-tracking-master folder.
-![install](Documentation~/images/select-package.png)
+    ![install](Documentation~/images/select-package.png)
 
     
 ## Requirements
