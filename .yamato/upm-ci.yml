@@ -2,21 +2,26 @@ test_editors:
   - version: 2018.4
   - version: 2019.3
   - version: 2020.1
+  - version: 2020.2
+  - version: trunk
 test_platforms:
   - name: win
     type: Unity::VM
     image: package-ci/win10:stable
     flavor: b1.large
+    runtime: editmode
   - name: mac
     type: Unity::VM::osx
-    image: buildfarm/mac:stable
+    image: package-ci/mac:stable
     flavor: m1.mac
+    runtime: editmode
+
 ---
 pack:
   name: Pack
   agent:
     type: Unity::VM
-    image: package-ci/win10:stable
+    image: package-ci/ubuntu:stable
     flavor: b1.large
   commands:
     - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
@@ -26,10 +31,11 @@ pack:
       paths:
         - "upm-ci~/**/*"
 
+# Run tests per platforms
 {% for editor in test_editors %}
 {% for platform in test_platforms %}
 test_{{ platform.name }}_{{ editor.version }}:
-  name : Test {{ editor.version }} on {{ platform.name }}
+  name : {{ editor.version }} Tests ({{ platform.name }})
   agent:
     type: {{ platform.type }}
     image: {{ platform.image }}
@@ -41,7 +47,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     - sudo apt install ocl-icd-opencl-dev -y
     {% endif %}
     - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-    - upm-ci package test --unity-version {{ editor.version }}
+    - {% if platform.name == "centos" %}DISPLAY=:0 {% endif %}upm-ci package test -u {{ editor.version }} --type package-tests --platform {{ platform.runtime }}
   artifacts:
     logs:
       paths:
