@@ -9,9 +9,5 @@
 		"name": "Unity Technologies ApS",
 		"url": "https://unity.com/"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.cds.internal.unity3d.com/unity/com.unity.performance-tracking.git"
-	},
 	"dependencies": {}
 }
