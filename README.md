@@ -28,7 +28,6 @@ Use the package manager:
 
 ![install](Documentation~/images/git-url.png)
 
-- Enter: `git@github.com:Unity-Technologies/com.unity.performance-tracking.git` if your git account is setup with `ssh` or 
 - Enter `https://github.com/Unity-Technologies/com.unity.performance-tracking.git`
 
 ### Local Installation
