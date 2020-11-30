@@ -430,7 +430,8 @@ namespace Unity.PerformanceTracking
             #if UNITY_2021_1_OR_NEWER
             var profiler = (ProfilerWindow)profilerWindow;
             var cpuModule = profiler.GetProfilerModule<CPUModule>(ProfilerArea.CPU);
-            if (cpuModule.SetSelection("") && !string.IsNullOrEmpty(searchString))
+            cpuModule.ClearSelection();
+            if (!string.IsNullOrEmpty(searchString))
                 cpuModule.FrameDataHierarchyView.treeView.searchString = searchString;
             #else
             var profiler = (ProfilerWindow)profilerWindow;
