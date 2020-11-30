@@ -1,6 +1,6 @@
 # Profiling Snippet Window
 
-The Profiling snippet window and its profiling API are available in Unity 2018.4 and onward. The goal of this window is to help benchmark or profile specific snippet of code in a more deterministic fashion.
+The goal of this window is to help benchmark or profile specific snippet of code in a more deterministic fashion.
 
 Here is a quick example of the Window in action:
 
@@ -8,7 +8,7 @@ Here is a quick example of the Window in action:
 
 As you can see there are mainly 2 workflows:
 
-- **Profiling**: execute the snippet of code while profiling it in the background. We then open the profiler ready to investigate the snippet: the frame is already selected and the filter searchfiled is already populated.
+- **Profiling**: execute the snippet of code while profiling it in the background. We then open the profiler ready to investigate the snippet: the frame is already selected and the filter search field is already populated.
 - **Benchmark**: execute the snippet of code and benchmark its execution. It then logs the result in file (and at the console).
 
 ## Snippet List View

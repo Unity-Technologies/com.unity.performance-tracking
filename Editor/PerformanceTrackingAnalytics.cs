@@ -1,5 +1,4 @@
-﻿#if UNITY_2019_3_OR_NEWER
-// #define PERFORMANCE_TRACKING_ANALYTICS_LOGGING
+﻿// #define PERFORMANCE_TRACKING_ANALYTICS_LOGGING
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -392,4 +391,3 @@ namespace Unity.PerformanceTracking
     }
 
 }
-#endif

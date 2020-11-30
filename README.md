@@ -48,5 +48,4 @@ Use the package manager:
 
 This version of Performance Tracker is compatible with the following versions of the Unity Editor:
 
-* 2018.3: for ProfilerHelpers API and Profiling Snippet Window
-* 2019.3 and later for Performance Tracker Window, Monitoring Service and Performance Bug Reporting
+* 2019.4 and later for Performance Tracker Window, Monitoring Service and Performance Bug Reporting
