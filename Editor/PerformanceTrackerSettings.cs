@@ -1,4 +1,3 @@
-#if UNITY_2019_3_OR_NEWER
 // #define PERFORMANCE_TRACKING_DEBUG
 using System;
 using System.Linq;
@@ -329,4 +328,3 @@ namespace Unity.PerformanceTracking
         }
     }
 }
-#endif

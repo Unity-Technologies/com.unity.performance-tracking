@@ -1,20 +1,18 @@
 test_editors:  
-  - version: 2018.4
-  - version: 2019.3
-  - version: 2020.1
+  - version: 2019.4
   - version: 2020.2
-  - version: trunk
+  - version: 2021.1
 test_platforms:
   - name: win
     type: Unity::VM
     image: package-ci/win10:stable
     flavor: b1.large
     runtime: editmode
-  - name: mac
-    type: Unity::VM::osx
-    image: package-ci/mac:stable
-    flavor: m1.mac
-    runtime: editmode
+#  - name: mac
+#    type: Unity::VM::osx
+#    image: package-ci/mac:stable
+#    flavor: m1.mac
+#    runtime: editmode
 
 ---
 pack:
@@ -24,7 +22,7 @@ pack:
     image: package-ci/ubuntu:stable
     flavor: b1.large
   commands:
-    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory-upload.prd.it.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package pack
   artifacts:
     packages:
@@ -46,7 +44,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     {% if platform.name == 'linux' %}
     - sudo apt install ocl-icd-opencl-dev -y
     {% endif %}
-    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory-upload.prd.it.unity3d.com/artifactory/api/npm/upm-npm
     - {% if platform.name == "centos" %}DISPLAY=:0 {% endif %}upm-ci package test -u {{ editor.version }} --type package-tests --platform {{ platform.runtime }}
   artifacts:
     logs:
@@ -68,30 +66,5 @@ test_trigger:
     {% for editor in test_editors %}
     {% for platform in test_platforms %}
     - .yamato/upm-ci.yml#test_{{platform.name}}_{{editor.version}}
-    {% endfor %}
-    {% endfor %}
-
-publish:
-  name: Publish to Internal Registry
-  agent:
-    type: Unity::VM
-    image: package-ci/win10:stable
-    flavor: b1.large
-  commands:
-    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
-    - upm-ci package publish
-  triggers:
-    tags:
-      only:
-        - /^(r|R)(c|C)-\d+\.\d+\.\d+(-preview(\.\d+)?)?$/
-  artifacts:
-    artifacts:
-      paths:
-        - "upm-ci~/packages/*.tgz"
-  dependencies:
-    - .yamato/upm-ci.yml#pack
-    {% for editor in test_editors %}
-    {% for platform in test_platforms %}
-    - .yamato/upm-ci.yml#test_{{ platform.name }}_{{ editor.version }}
     {% endfor %}
     {% endfor %}

@@ -1,5 +1,4 @@
-﻿#if UNITY_2019_3_OR_NEWER
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Profiling;
@@ -261,4 +260,3 @@ namespace Unity.PerformanceTracking
         }
     }
 }
-#endif

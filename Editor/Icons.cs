@@ -1,5 +1,4 @@
-﻿#if UNITY_2019_3_OR_NEWER
-using System;
+﻿using System;
 using System.IO;
 using UnityEditor;
 using UnityEditor.Experimental;
@@ -71,4 +70,3 @@ namespace Unity.PerformanceTracking
         }
     }
 }
-#endif

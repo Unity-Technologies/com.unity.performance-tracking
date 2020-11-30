@@ -1,6 +1,5 @@
 ﻿
 using System.Linq;
-#if UNITY_2019_3_OR_NEWER
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
@@ -46,4 +45,3 @@ public class PerformanceTrackerActionsTests
         }
     }
 }
-#endif

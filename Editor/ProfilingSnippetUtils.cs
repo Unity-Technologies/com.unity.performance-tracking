@@ -7,10 +7,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-
-#if UNITY_2019_3_OR_NEWER
 using UnityEditor.Profiling;
-#endif
 
 namespace Unity.PerformanceTracking
 {
@@ -243,7 +240,6 @@ namespace Unity.PerformanceTracking
 
         }
 
-#if UNITY_2019_3_OR_NEWER
         public static Action GetMarkerEnclosedSnippetAction(object preExecutePayload, ProfilingSnippet snippet, ProfilingSnippetOptions options)
         {
             var snippetAction = snippet.GetSnippetAction(preExecutePayload, options);
@@ -262,7 +258,6 @@ namespace Unity.PerformanceTracking
 
             return snippetAction;
         }
-#endif
 
         #region TestProfilingSnippetAttribute
         static void DoSomethingLong()

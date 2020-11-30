@@ -1,5 +1,4 @@
-﻿#if UNITY_2019_3_OR_NEWER
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -208,4 +207,3 @@ namespace Unity.PerformanceTracking
         }
     }
 }
-#endif

@@ -27,7 +27,6 @@ namespace Unity.PerformanceTracking
             ProfilerHelpers.RecordWithProfileSample(snippet.sampleName, s, true, deepProfile, options.count);
         }
 
-#if UNITY_2019_3_OR_NEWER
         [UsedImplicitly, ProfilingAction("Profile Marker")]
         static void ProfileMarker(object preExecutePayload, ProfilingSnippet snippet, ProfilingSnippetOptions options)
         {
@@ -46,7 +45,6 @@ namespace Unity.PerformanceTracking
             var action = ProfilingSnippetUtils.GetMarkerEnclosedSnippetAction(preExecutePayload, snippet, options);
             ProfilerHelpers.RecordWithMarkerFilter(markerName, action, true, deepProfile, options.count);
         }
-#endif
 
         [UsedImplicitly, ProfilingAction("Benchmark")]
         static void BenchmarkSnippet(object preExecutePayload, ProfilingSnippet snippet, ProfilingSnippetOptions options)
@@ -69,7 +67,6 @@ namespace Unity.PerformanceTracking
             }
         }
 
-#if UNITY_2019_3_OR_NEWER
         [UsedImplicitly, ProfilingAction("Benchmark Marker")]
         static void BenchmarMarker(object preExecutePayload, ProfilingSnippet snippet, ProfilingSnippetOptions options)
         {
@@ -78,7 +75,6 @@ namespace Unity.PerformanceTracking
             var result = ProfilerHelpers.BenchmarkMarker(markerName, action, options.count);
             LogBenchmark($"Benchmark marker {markerName}", result, options);
         }
-#endif
 
         private static void LogBenchmark(string title, ProfilerHelpers.BenchmarkResult result, ProfilingSnippetOptions options)
         {

@@ -1,5 +1,4 @@
-﻿#if UNITY_2019_3_OR_NEWER
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -762,4 +761,3 @@ namespace Unity.PerformanceTracking
         }
     }
 }
-#endif
