@@ -18,6 +18,12 @@ using Debug = UnityEngine.Debug;
 using UnityEditorInternal.Profiling;
 #endif
 
+#if UNITY_2021_1_OR_NEWER
+using CPUModule = UnityEditorInternal.Profiling.CPUOrGPUProfilerModule;
+#else
+using CPUModule = UnityEditorInternal.Profiling.CPUorGPUProfilerModule;
+#endif
+
 [assembly: InternalsVisibleTo("Unity.PerformanceTracking.Editor.Tests")]
 
 namespace Unity.PerformanceTracking
@@ -67,7 +73,7 @@ namespace Unity.PerformanceTracking
             if (!SupportsMarkerFiltering())
                 return false;
 
-#if UNITY_2020_1_OR_NEWER
+            #if UNITY_2020_1_OR_NEWER
             if (!EditorPerformanceTracker.Exists(markerName))
             {
                 // Create Marker once so Profiler.SetMarkerFiltering will work
@@ -76,7 +82,7 @@ namespace Unity.PerformanceTracking
 
                 }
             }
-#endif
+            #endif
 
             return StartProfilerRecording(markerName, editorProfile, deepProfile, () =>
             {
@@ -176,7 +182,6 @@ namespace Unity.PerformanceTracking
         {
             if (!Directory.Exists(k_DefaultProfileSaveDirectory))
                 Directory.CreateDirectory(k_DefaultProfileSaveDirectory);
-            // var timeId = EditorApplication.timeSinceStartup.ToString(CultureInfo.InvariantCulture).Replace(".", "");
             var timeId = DateTime.Now.ToString("s").Replace(":", "_");
             var formattedId = reportTitle.ToLowerInvariant().Replace(".", "_");
             if (ProfilerDriver.deepProfiling)
@@ -368,17 +373,17 @@ namespace Unity.PerformanceTracking
 
         internal static EditorWindow OpenProfilerWindow()
         {
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2019_3_OR_NEWER
             var profilerWindow = EditorWindow.CreateWindow<ProfilerWindow>();
-#else
+            #else
             var profilerWindow = EditorWindow.GetWindow(m_ProfilerWindowType);
-#endif
+            #endif
             SwitchToCPUView(profilerWindow);
             profilerWindow.Show();
             return profilerWindow;
         }
 
-#if UNITY_2019_3
+        #if UNITY_2019_3
         internal static void GetCpuModule(EditorWindow profiler, out System.Type cpuModuleType, out object cpuModule)
         {
             var m_ProfilerModulesField = m_ProfilerWindowType.GetField("m_ProfilerModules", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -386,41 +391,41 @@ namespace Unity.PerformanceTracking
             cpuModule = m_ProfilerModules.GetValue((int)ProfilerArea.CPU);
             cpuModuleType = GetUnityEditorType("CPUorGPUProfilerModule");
         }
-#endif
+        #endif
 
         internal static void SetProfilerDeepProfile(bool deepProfile)
         {
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2019_3_OR_NEWER
             ProfilerWindow.SetEditorDeepProfiling(deepProfile);
-#else
+            #else
             ProfilerDriver.deepProfiling = deepProfile;
             RequestScriptReload();
-#endif
+            #endif
         }
 
         internal static void RequestScriptReload()
         {
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2019_3_OR_NEWER
             EditorUtility.RequestScriptReload();
-#else
+            #else
             InternalEditorUtility.RequestScriptReload();
-#endif
+            #endif
         }
 
         internal static void SetRecordingEnabled(EditorWindow profiler, bool enableRecording)
         {
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2019_3_OR_NEWER
             ((ProfilerWindow)profiler).SetRecordingEnabled(enableRecording);
-#endif
+            #endif
         }
 
         internal static bool SupportsMarkerFiltering()
         {
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2019_3_OR_NEWER
             return true;
-#else
+            #else
             return false;
-#endif
+            #endif
         }
 
         internal static string GetCurrentMarkerFilter()
@@ -433,55 +438,44 @@ namespace Unity.PerformanceTracking
             if (SupportsMarkerFiltering())
                 m_MarkerFilter = markerName;
 
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2019_3_OR_NEWER
             ProfilerDriver.SetMarkerFiltering(markerName);
-#endif
+            #endif
         }
 
         internal static void SwitchToCPUView(EditorWindow profilerWindow)
         {
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2019_3_OR_NEWER
             var profiler = (ProfilerWindow)profilerWindow;
             var cpuProfilerModule = profiler.GetProfilerModule<CPUProfilerModule>(ProfilerArea.CPU);
             cpuProfilerModule.ViewType = ProfilerViewType.Hierarchy;
-            /*
-#elif UNITY_2019_3
-            GetCpuModule(profilerWindow, out var cpuModuleType, out var cpuModule);
-            var ViewTypeProperty = cpuModuleType.GetProperty("ViewType", BindingFlags.Instance | BindingFlags.NonPublic);
-            var viewType = GetUnityEditorType("ProfilerViewType");
-            var viewTypeHierarchy = viewType.GetEnumValues().GetValue(0);
-            ViewTypeProperty.SetValue(cpuModule,viewTypeHierarchy);
-            */
-#else
+            #else
             var CPUOrGPUViewTypeChanged = m_ProfilerWindowType.GetMethod("CPUOrGPUViewTypeChanged", BindingFlags.NonPublic | BindingFlags.Instance);
             var viewType = GetUnityEditorType("ProfilerViewType");
             var viewTypeHierarchy = viewType.GetEnumValues().GetValue(0);
             CPUOrGPUViewTypeChanged.Invoke(profilerWindow, new object[] { viewTypeHierarchy });
-#endif
+            #endif
         }
 
         internal static void SetSearchField(EditorWindow profilerWindow, string searchString)
         {
-#if UNITY_2019_3_OR_NEWER
+            #if UNITY_2021_1_OR_NEWER
             var profiler = (ProfilerWindow)profilerWindow;
-            var cpuModule = profiler.GetProfilerModule<CPUorGPUProfilerModule>(ProfilerArea.CPU);
+            var cpuModule = profiler.GetProfilerModule<CPUModule>(ProfilerArea.CPU);
+            if (cpuModule.SetSelection("") && !string.IsNullOrEmpty(searchString))
+                cpuModule.FrameDataHierarchyView.treeView.searchString = searchString;
+            #elif UNITY_2019_3_OR_NEWER
+            var profiler = (ProfilerWindow)profilerWindow;
+            var cpuModule = profiler.GetProfilerModule<CPUModule>(ProfilerArea.CPU);
             cpuModule.FrameDataHierarchyView.SetSelectionFromLegacyPropertyPath("");
             if (!String.IsNullOrEmpty(searchString))
                 cpuModule.FrameDataHierarchyView.treeView.searchString = searchString;
-            /*
-#elif UNITY_2019_3_OR_NEWER
-            GetCpuModule(profilerWindow, out var cpuModuleType, out var cpuModule);
-            var FrameDataHierarchyViewProperty = cpuModuleType.GetProperty("FrameDataHierarchyView", BindingFlags.Instance | BindingFlags.NonPublic);
-            var FrameDataHierarchyView = FrameDataHierarchyViewProperty.GetValue(cpuModule);
-            var ProfilerFrameDataHierarchyViewType = GetUnityEditorType("ProfilerFrameDataHierarchyView");
-            SetTreeViewSearchString(ProfilerFrameDataHierarchyViewType, FrameDataHierarchyView, searchString);
-            */
-#else
+            #else
             var m_CPUFrameDataHierarchyViewField = m_ProfilerWindowType.GetField("m_CPUFrameDataHierarchyView", BindingFlags.Instance | BindingFlags.NonPublic);
             var cpuFrameView = m_CPUFrameDataHierarchyViewField.GetValue(profilerWindow);
             var ProfilerFrameDataHierarchyViewType = GetUnityEditorType("ProfilerFrameDataHierarchyView");
             SetTreeViewSearchString(ProfilerFrameDataHierarchyViewType, cpuFrameView, searchString);
-#endif
+            #endif
         }
 
         internal static void SetTreeViewSearchString(System.Type typeOwningTreeView, object objOwningTreeView, string searchString)
