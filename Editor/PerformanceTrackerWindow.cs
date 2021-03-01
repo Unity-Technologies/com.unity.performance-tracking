@@ -7,8 +7,7 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.Profiling;
 using UnityEngine.UIElements;
-using Button = UnityEngine.UIElements.Button;
-using UIElements = UnityEditor.UIElements;
+using UnityEditor.UIElements;
 
 namespace Unity.PerformanceTracking
 {
@@ -39,8 +38,8 @@ namespace Unity.PerformanceTracking
         private ListView m_TrackersView;
         private ListView m_PinnedTrackersView;
         private VisualElement m_HeaderRow;
-        private UIElements.EnumField m_SortBySelector;
-        private UIElements.ToolbarSearchField m_SearchField;
+        private EnumField m_SortBySelector;
+        private ToolbarSearchField m_SearchField;
         private Delayer m_RefreshFromSearch;
         private bool m_NeedsUpdate;
         private string m_CurrentProfileTag = String.Empty;
@@ -140,14 +139,14 @@ namespace Unity.PerformanceTracking
 
             m_RefreshFromSearch = Delayer.Throttle(RefreshFromSearch);
 
-            var toolbar = new UIElements.Toolbar();
+            var toolbar = new UnityEditor.UIElements.Toolbar();
             toolbar.AddToClassList("perf-toolbar");
             toolbar.style.height = PtStyles.itemHeight;
 
             var searchBox = new VisualElement();
             searchBox.AddToClassList("perf-search-box");
             AddSelectorLabel(toolbar, "Tracker");
-            m_SearchField = new UIElements.ToolbarSearchField();
+            m_SearchField = new ToolbarSearchField();
             m_SearchField.AddToClassList("perf-search-tracker");
             m_SearchField.value = m_FilterText;
             m_SearchField.RegisterCallback<ChangeEvent<string>>((evt) =>
@@ -164,7 +163,7 @@ namespace Unity.PerformanceTracking
 
             AddSelectorLabel(toolbar, "Update Speed");
             var choices = PtModel.RefreshRates.Select(r => r.label).ToList();
-            var updateSpeedSelector = new UIElements.PopupField<string>(choices, 0);
+            var updateSpeedSelector = new UnityEditor.UIElements.PopupField<string>(choices, 0);
             updateSpeedSelector.value = PtModel.RefreshRates[m_UpdateSpeedIndex].label;
             updateSpeedSelector.AddToClassList("perf-update-speed-selector");
             updateSpeedSelector.RegisterCallback<ChangeEvent<string>>((evt) =>
@@ -177,7 +176,7 @@ namespace Unity.PerformanceTracking
 
             AddSelectorLabel(toolbar, "Columns");
             var columnsChoice = PtModel.ColumnDescriptors.Where(desc => desc.columnsSelectorMaskId > 0).Select(desc => desc.label).ToList();
-            var columnsSelector = new UIElements.MaskField(columnsChoice, m_ShownColumn);
+            var columnsSelector = new MaskField(columnsChoice, m_ShownColumn);
             columnsSelector.RegisterCallback<ChangeEvent<int>>((evt) =>
             {
                 m_ShownColumn = evt.newValue;
@@ -189,7 +188,7 @@ namespace Unity.PerformanceTracking
             toolbar.Add(columnsSelector);
 
             AddSelectorLabel(toolbar, "Sort By");
-            m_SortBySelector = new UIElements.EnumField(ColumnId.Name);
+            m_SortBySelector = new EnumField(ColumnId.Name);
             m_SortBySelector.value = m_SortBy;
             m_SortBySelector.AddToClassList("perf-sort-by-selector");
             m_SortBySelector.RegisterCallback<ChangeEvent<Enum>>((evt) =>
@@ -311,7 +310,7 @@ namespace Unity.PerformanceTracking
             return !columnDesc.supportsHiding || (columnDesc.columnsSelectorMaskId & m_ShownColumn) > 0;
         }
 
-        private void AddHeader(VisualElement container, UIElements.EnumField sortBySelector, ColumnId sortBy, params string[] classes)
+        private void AddHeader(VisualElement container, EnumField sortBySelector, ColumnId sortBy, params string[] classes)
         {
             if (!IsColumnVisible(sortBy))
                 return;
@@ -725,7 +724,7 @@ namespace Unity.PerformanceTracking
 
         internal void SetSearchString(string searchString)
         {
-            var searchField = rootVisualElement.Q<UIElements.ToolbarSearchField>(null, "perf-search-tracker");
+            var searchField = rootVisualElement.Q<ToolbarSearchField>(null, "perf-search-tracker");
             if (searchField == null)
                 return;
             searchField.value = searchString;
